@@ -6,12 +6,13 @@ class Solution {
         left=0;
         int max=0;
         while (right < s.length()){
-        if(!set.contains(s.charAt(right))){
+        if(!set.contains(s.charAt(right))){//put the element into the set if it's unique
             set.add(s.charAt(right));
             right++;
-            max=Math.max(max,right-left);
+            max=Math.max(max,right-left); // use Math.max to update the value
         }
-        else{set.remove(s.charAt(left++));}
+        else{set.remove(s.charAt(left++));}// slide the window because a repeated element is found, keep removing until the repeated element is eliminated
+                          
     }
         return max;
     }
