@@ -1,0 +1,17 @@
+class Solution {
+    public int maxArea(int[] height) {
+        int i,j;//two pointers for the left and right side of the array.
+        i=0;
+        j=height.length-1;
+        int maxarea=0;
+        while(i!=j){
+            maxarea=Math.max(maxarea, Math.min(height[i],height[j])*(j-i));//updata maxarea, use Math.min to calculate the volume
+            
+            if(height[i]<height[j]) {i++;}//move the pointer for shorter column toward the other side to maximize the volume
+            else 
+                j--;
+        }
+        return maxarea;
+    }
+
+}
