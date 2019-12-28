@@ -1,0 +1,29 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int i,j,k;
+        i = j = k = 0;
+        float median;
+        
+        int[] nums3 =  new int[nums1.length+nums2.length];//merge 2 sorted arrays
+        
+        while(i < nums1.length && j < nums2.length){
+            if(nums1[i] < nums2[j]){
+                nums3[k++] = nums1[i++];
+            }
+            else {nums3[k++] = nums2[j++];}
+        }
+        while(i < nums1.length) {nums3[k++] = nums1[i++];}
+        while(j < nums2.length) {nums3[k++] = nums2[j++];}
+        
+        if(nums3.length % 2 == 0) {// find the median
+            int m = nums3.length/2;
+            median = (float)(nums3[m]+nums3[m-1])/2;
+        }
+        else {
+            int m = nums3.length/2;
+            median = nums3[m];
+        }
+            return median;
+    }
+
+}
