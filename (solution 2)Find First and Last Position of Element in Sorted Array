@@ -1,0 +1,48 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int[] result = new int[2];
+        result[0] = FindStart(nums, target);
+        result[1] = FindEnd(nums, target);
+        return result;
+    }
+        
+    public int FindEnd(int[] nums, int target){ // find the right-most boundary
+        int index = -1;
+        int low, high, mid;
+        low = 0;
+        high = nums.length-1;
+        
+        while(low <= high){
+            mid = low + (high - low) / 2;
+            if(nums[mid] <= target){// "<=" to deal with duplication
+                low = mid + 1;
+            }else{
+                high = mid - 1;
+            }
+            
+            if(nums[mid] == target) index = mid; // make sure to return the right index
+        }
+        return index;
+    }
+        
+       public int FindStart(int[] nums, int target){ // find the left-most boundary
+        int index = -1;
+        int low, high, mid;
+        low = 0;
+        high = nums.length-1;
+        
+        while(low <= high){
+            mid = low + (high - low) / 2;
+            if(nums[mid] >= target){// ">=" to deal with duplication
+                high = mid - 1;
+            }else{
+                low = mid + 1;
+            }
+            
+            if(nums[mid] == target) index = mid; // make sure to return the right index
+        }
+        return index;
+    }
+        
+    
+}
