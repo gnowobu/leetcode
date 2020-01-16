@@ -1,0 +1,40 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        if(nums.length == 0) return -1; //don't forget to add this!!!!
+        
+        int min = FindMin(nums); //the index of min element
+        int start = (target < nums[0])? min:0;
+        int end = (target > nums[nums.length-1])? min: nums.length-1;
+        
+        while(start <= end){
+            int mid = start + (end - start) / 2;
+            if(nums[mid] == target) return mid;
+            else if(nums[mid] > target){
+                end = mid - 1;
+            }
+            else {start = mid + 1;}
+        }
+        return -1;
+        
+    }
+    
+    public int FindMin(int[] nums){
+        int high, low, mid;
+        low = 0;
+        high = nums.length - 1;
+        
+        while(low < high){ //when low == high means the min element is found
+            
+            mid = low + (high - low) / 2;
+            
+            if(nums[mid] > nums[high]){ // to find the real minimum element
+               low = mid + 1;
+            }else{
+                high = mid;
+            }
+        }
+        return low;
+    }
+    
+    
+}
