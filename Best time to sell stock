@@ -1,0 +1,19 @@
+class Solution { // brute force
+    public int maxProfit(int[] prices) {
+      
+        if(prices.length == 0 || prices == null) return 0;
+        int i, j;
+        int max_profit = 0;
+        
+        for(i = 0; i < prices.length - 1; i++)
+            for(j = i + 1; j < prices.length; j++){
+                if(prices[j] < prices[i])  continue;
+                
+                max_profit = Math.max(max_profit, prices[j] - prices[i]);
+            }
+        return max_profit;
+        
+    }
+}
+
+
